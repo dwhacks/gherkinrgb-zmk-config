@@ -5,7 +5,7 @@
 	/* Cannot be used together with i2c0. */
 	status = "okay";
     // Use P1.04 for LED underglow
-	mosi-pin = <36>;
+	mosi-pin = <38>;
 	// Unused pins, needed for SPI definition, but not used by the ws2812 driver itself.
 	sck-pin = <5>;
 	miso-pin = <7>;
