@@ -11,14 +11,12 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/backlight.h>
 
-#define BASE  0     // alphas (Colemak-DH)
-#define QWRTY 1     // alphas (Qwerty)
-#define HNSDN 2     // alphas (Hands Down Neu)
-#define SYMBL 3     // symbols
-#define LOWER 4     // functions & numbers
-#define RAISE 5     // keypad & navigation
-#define MEDIA 6     // functions2 & multimedia
-#define ADJST 7     // lighting & bluetooth
+#define BASE  0     // alphas (Qwerty)
+#define SYMBL 1     // symbols
+#define LOWER 2     // functions & numbers
+#define RAISE 3     // keypad & navigation
+#define MEDIA 4     // functions2 & multimedia
+#define ADJST 5     // lighting & bluetooth
 
 // Special keys
 #define ZOOMOUT      LA(LG(MINUS))
@@ -85,37 +83,20 @@
 
         combos {
             compatible = "zmk,combos";
-
-// Colemak (Horizontal Combos)
-// -------------------------------------------------------------
-// |     |<-  Esc  ->|     |     |     |     |     |     |     |
-// |     |     |     |<-   V   ->|<-   K   ->|     |     |     |
-// |     |<-  Tab  ->|<- Bkspc ->|<- Space ->|<- Enter ->|     |
-// -------------------------------------------------------------
-            combo_esc   { timeout-ms = <50>; key-positions = < 1  2>; bindings = <&kp ESC>;   layers = <BASE QWRTY HNSDN SYMBL>; };
-            combo_tab   { timeout-ms = <50>; key-positions = <21 22>; bindings = <&kp TAB>;   layers = <BASE QWRTY HNSDN SYMBL>; };
-            combo_bspc  { timeout-ms = <50>; key-positions = <23 24>; bindings = <&kp BSPC>;  layers = <BASE QWRTY HNSDN SYMBL>; };
-            combo_space { timeout-ms = <50>; key-positions = <25 26>; bindings = <&kp SPACE>; layers = <BASE QWRTY HNSDN SYMBL>; };
-            combo_enter { timeout-ms = <50>; key-positions = <27 28>; bindings = <&kp ENTER>; layers = <BASE QWRTY HNSDN SYMBL>; };
-            combo_v     { timeout-ms = <50>; key-positions = <13 14>; bindings = <&kp V>;     layers = <BASE>; };
-            combo_k     { timeout-ms = <50>; key-positions = <15 16>; bindings = <&kp K>;     layers = <BASE>; };
-
+            
 // Qwerty (Horizontal Combos)
 // -------------------------------------------------------------
 // |     |<-  Esc  ->|     |     |     |     |     |     |     |
 // |     |     |     |<-   B   ->|<-   N   ->|     |     |     |
 // |     |<-  Tab  ->|<- Bkspc ->|<- Space ->|<- Enter ->|     |
 // -------------------------------------------------------------
-            combo_b     { timeout-ms = <50>; key-positions = <13 14>; bindings = <&kp B>;     layers = <QWRTY HNSDN>; };
-            combo_n     { timeout-ms = <50>; key-positions = <15 16>; bindings = <&kp N>;     layers = <QWRTY>; };
-
-// Hands Down Neu 30 (Horizontal Combos)
-// -------------------------------------------------------------
-// |     |<-  Esc  ->|     |     |     |     |     |     |     |
-// |     |     |     |<-   B   ->|<-   ;   ->|     |     |     |
-// |     |<-  Tab  ->|<- Bkspc ->|<- Space ->|<- Enter ->|     |
-// -------------------------------------------------------------
-            combo_semi  { timeout-ms = <50>; key-positions = <15 16>; bindings = <&kp SEMI>;  layers = <HNSDN>; };
+            combo_esc   { timeout-ms = <50>; key-positions = < 1  2>; bindings = <&kp ESC>;   layers = <BASE SYMBL>; };
+            combo_tab   { timeout-ms = <50>; key-positions = <21 22>; bindings = <&kp TAB>;   layers = <BASE SYMBL>; };
+            combo_bspc  { timeout-ms = <50>; key-positions = <23 24>; bindings = <&kp BSPC>;  layers = <BASE SYMBL>; };
+            combo_space { timeout-ms = <50>; key-positions = <25 26>; bindings = <&kp SPACE>; layers = <BASE SYMBL>; };
+            combo_enter { timeout-ms = <50>; key-positions = <27 28>; bindings = <&kp ENTER>; layers = <BASE SYMBL>; };
+            combo_v     { timeout-ms = <50>; key-positions = <13 14>; bindings = <&kp V>;     layers = <BASE>; };
+            combo_k     { timeout-ms = <50>; key-positions = <15 16>; bindings = <&kp K>;     layers = <BASE>; };
 
 // Symbols (Horizontal Combos)
 // -------------------------------------------------------------
@@ -184,20 +165,6 @@
 // |LCtrl| LAlt| LGui|Shift|     |     |Shift| RGui| RAlt|RCtrl|
 // |     |     |     |LOWER|LShft|SYMBL|RAISE|     |     |     |
 // -------------------------------------------------------------
-// Colemak-DH
-// -------------------------------------------------------------
-// |  Q  |  W  |  F  |  P  |  B  |  J  |  L  |  U  |  Y  |  ;  |
-// |  A  |  R  |  S  |  T  |  G  |  M  |  N  |  E  |  I  |  O  |
-// |  Z  |  X  |  C  |  D  |BkSpc|Space|  H  |  ,  |  .  |  /  |
-// -------------------------------------------------------------
-            bindings = < 
-    &kp Q       &kp W       &kp F       &kp P       &kp B         &kp J           &kp L       &kp U       &kp Y       &kp SEMI
-    &hm LCTRL A &hm LALT R  &hm LGUI S  &hm LSFT T  &kp G         &kp M           &hm RSFT N  &hm RGUI E  &hm RALT I  &hm RCTRL O
-    &kp Z       &kp X       &kp C       &lt LOWER D &mt LSFT BSPC &th SYMBL SPACE &lt RAISE H &kp COMMA   &kp DOT     &kp FSLH
-            >;
-        } ;
-
-        qwerty_layer {
 // Qwerty
 // -------------------------------------------------------------
 // |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |
@@ -210,21 +177,7 @@
     &kp Z       &kp X       &kp C       &lt LOWER V &mt LSFT BSPC &th SYMBL SPACE &lt RAISE B &kp N   &kp M  &kp DOT
             >;
         } ;
-
-        handsdownneu_layer {
-// Hands Down New 30
-// -------------------------------------------------------------
-// |  W  |  F  |  M  |  P  |  V  |  /  |  .  |  Q  |  J  |  Z  |
-// |  R  |  S  |  N  |  T  |  G  |  ,  |  A  |  E  |  I  |  H  |
-// |  X  |  C  |  L  |  D  |BkSpc|Space|  U  |  O  |  Y  |  K  |
-// -------------------------------------------------------------
-            bindings = < 
-    &kp W       &kp F       &kp M       &kp P       &kp V         &kp FSLH        &kp DOT     &kp Q       &kp J       &kp Z
-    &hm LCTRL R &hm LALT S  &hm LGUI N  &hm LSFT T  &kp G         &kp COMMA       &hm RSFT A  &hm RGUI E  &hm RALT I  &hm RCTRL H
-    &kp X       &kp C       &kp L       &lt LOWER D &mt LSFT BSPC &th SYMBL SPACE &lt RAISE U &kp O       &kp Y       &kp K
-            >;
-        } ;
-
+        
         symbols_layer {
 // symbols
 // -------------------------------------------------------------
@@ -285,24 +238,24 @@
 /*
 // -------------------------------------------------------------
 // |Bri+ |     |     |     |Toggl|BTClr| BT0 | BT1 | BT2 | BT3 |
-// |Bri- |     |     |     |     |     |Colmk|Qwrty|HnsDn|     |
+// |Bri- |     |     |     |     |     |     |     |     |     |
 // | USB | BLE |     | *** |     |     | *** |     |Reset|BootL|
 // -------------------------------------------------------------
             bindings = <
     &bl BL_INC   &none        &none   &none   &bl BL_TOG &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3
-    &bl BL_DEC   &none        &none   &none   &none      &none      &to BASE     &to QWRTY    &to HNSDN    &none
+    &bl BL_DEC   &none        &none   &none   &none      &none      &none        &none        &none        &none
     &out OUT_USB &out OUT_BLE &none   &trans  &none      &none      &trans       &none        &reset       &bootloader
             >;
 */
 //  v----------- RGB -----------v
 // -------------------------------------------------------------
 // |Bri+ |Sat+ |Hue+ |Spd+ |Ani+ |BTClr| BT0 | BT1 | BT2 | BT3 |
-// |Bri- |Sat- |Hue- |Spd- |Ani- |     |Colmk|Qwrty|HnsDn|     |
+// |Bri- |Sat- |Hue- |Spd- |Ani- |     |     |     |     |     |
 // | USB | BLE |     | *** |     |     | *** |     |Reset|BootL|
 // -------------------------------------------------------------
             bindings = <
     &rgb_ug RGB_BRI &rgb_ug RGB_SAI &rgb_ug RGB_HUI &rgb_ug RGB_SPI &rgb_ug RGB_EFF &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3
-    &rgb_ug RGB_BRD &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_SPD &rgb_ug RGB_EFR &none      &to BASE     &to QWRTY    &to HNSDN    &none
+    &rgb_ug RGB_BRD &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_SPD &rgb_ug RGB_EFR &none      &none        &none        &none        &none
     &out OUT_USB    &out OUT_BLE    &none           &trans          &none           &none      &trans       &none        &reset       &bootloader
             >;
 
